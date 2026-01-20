@@ -6,6 +6,16 @@ const Order = require('../models/Order');
  * @access  Public (Protected by Supabase Auth Gateway in prod)
  */
 const createOrder = async (req, res, next) => {
+    // MOCK MODE FOR TESTING
+    if (process.env.MOCK_MODE === 'true') {
+        return res.status(201).json({
+            _id: 'mock_order_id_123',
+            status: 'pending',
+            ...req.body,
+            createdAt: new Date()
+        });
+    }
+
     try {
         const { customer_id, restaurant_id, items, address } = req.body;
 
