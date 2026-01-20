@@ -12,20 +12,20 @@ graph TD
 
     %% -- Clients --
     subgraph "Clients (Frontend Layer)"
-        CustomerApp[MyEzz (Customer App)]:::client
+        CustomerApp[MyEzz Customer App]:::client
         VendorApp[MyEzz Restaurants]:::client
         RiderApp[MyEzz Rider App]:::client
     end
 
     %% -- Backend --
     subgraph "Core Infrastructure"
-        Backend[Central Backend Service<br/>(Node.js / Express / Socket.io)]:::server
+        Backend[Central Backend Service<br/>Node.js / Express / Socket.io]:::server
     end
 
     %% -- Databases --
     subgraph "Hybrid Database Layer"
-        Supabase[(Supabase<br/>PostgreSQL)]:::db
-        MongoDB[(MongoDB Atlas<br/>NoSQL)]:::db
+        Supabase[(Supabase PostgreSQL)]:::db
+        MongoDB[(MongoDB Atlas NoSQL)]:::db
     end
 
     %% -- Relationships --
