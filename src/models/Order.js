@@ -16,10 +16,21 @@ const orderSchema = mongoose.Schema({
         }
     ],
 
-    // Status Flow
+    // Status Flow - supports Restaurant and Rider status updates
     status: {
         type: String,
-        enum: ['pending', 'preparing', 'ready', 'out_for_delivery', 'delivered', 'cancelled'],
+        enum: [
+            'pending',           // Order placed, waiting for restaurant
+            'preparing',         // Restaurant preparing
+            'ready',             // Ready for pickup
+            'accepted',          // Rider accepted the order (assigned)
+            'pickup_completed',  // Rider picked up the order
+            'delivery_started',  // Rider on the way to customer
+            'out_for_delivery',  // Alias for delivery_started (legacy)
+            'delivered',         // Order delivered
+            'cancelled',         // Order cancelled
+            'failed'             // Delivery failed
+        ],
         default: 'pending'
     },
 
@@ -32,6 +43,9 @@ const orderSchema = mongoose.Schema({
 
     // Metadata
     total_amount: { type: Number }, // Validation logic handles this
+    
+    // Google Maps Live Location Sharing Link (provided by Rider)
+    live_tracking_link: { type: String, default: null },
 }, {
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } // Auto-manage timestamps
 });
