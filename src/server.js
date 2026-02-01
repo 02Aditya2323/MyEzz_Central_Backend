@@ -43,7 +43,7 @@ const io = new Server(httpServer, {
 });
 
 // Socket.io Logic
-require('./socket/socketHandler')(io);
+// require('./socket/socketHandler')(io);
 
 const PORT = process.env.PORT || 5050;
 httpServer.listen(PORT, () => {

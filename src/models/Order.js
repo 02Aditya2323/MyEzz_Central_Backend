@@ -44,6 +44,13 @@ const orderSchema = mongoose.Schema({
     // Metadata
     total_amount: { type: Number }, // Validation logic handles this
     
+    // Payment method (cash_on_delivery or online)
+    payment_method: { 
+        type: String, 
+        enum: ['cash_on_delivery', 'online'], 
+        default: 'cash_on_delivery' 
+    },
+    
     // Google Maps Live Location Sharing Link (provided by Rider)
     live_tracking_link: { type: String, default: null },
 }, {

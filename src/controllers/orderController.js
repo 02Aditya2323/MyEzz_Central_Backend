@@ -73,12 +73,16 @@ const createOrder = async (req, res, next) => {
             total_amount = body.total_amount;
         }
 
+        // Get payment method from request (defaults to cash_on_delivery)
+        const payment_method = body.paymentMethod === 'online' ? 'online' : 'cash_on_delivery';
+
         const order = await Order.create({
             customer_id,
             restaurant_id,
             items,
             delivery_address,
             total_amount,
+            payment_method,
             status: 'pending'
         });
 
